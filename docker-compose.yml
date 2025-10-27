@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: nexusquery_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./nexusquery:/app/nexusquery
+      - ./scripts:/app/scripts
+      - ./data:/app/data
+      - ./vector_db:/app/vector_db
+      - ./app.py:/app/app.py
+    environment:
+      - OLLAMA_HOST=ollama
+    networks:
+      - nexusquery_net
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    container_name: nexusquery_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - nexusquery_net
+
+networks:
+  nexusquery_net:
+    driver: bridge
+
+volumes:
+  ollama_data:
