@@ -1,14 +1,16 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Data and Vector DB
-data/
-vector_db/
-
-# Environment variables
 .env
-
-# Streamlit
-.streamlit/
+.venv
+venv/
+ENV/
+.pytest_cache/
+.coverage
+dist/
+build/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
